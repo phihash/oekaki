@@ -1,0 +1,13 @@
+.main-position {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+.canvas {
+  display: block;
+  width: 100%;
+  border: 2px solid #000;
+}
