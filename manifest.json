@@ -1,34 +1,34 @@
 {
   "name": "おえかき!",
   "short_name": "おえかき",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#FFE9D2",
   "theme_color": "#FFE1C4",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/img/icon-72.png",
+      "src": "img/icon-72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "/img/icon-96.png",
+      "src": "img/icon-96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "/img/icon-192.png",
+      "src": "img/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/img/icon-384.png",
+      "src": "img/icon-384.png",
       "type": "image/png",
       "sizes": "384x384"
     },
     {
-      "src": "/img/icon-512.png",
+      "src": "img/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
