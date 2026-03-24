@@ -1,6 +1,7 @@
 // クラスをインポート
-import { CanvasManager } from './CanvasManager.js';
-import { PenTool } from './PenTool.js';
+import { CanvasManager } from "./CanvasManager.js";
+import { PenTool } from "./PenTool.js";
+import { EraseTool } from "./EraseTool.js";
 
 // インスタンス作成
 const canvasManager = new CanvasManager("canvas");
@@ -44,7 +45,18 @@ canvas.addEventListener("touchstart", () => {
   isDrawing = true;
 });
 
-canvas.addEventListener("touchmove", () => {});
+canvas.addEventListener("touchmove", (event) => {
+  if (!isDrawing) return;
+
+  const pos = canvasManager.getCanvasPosition(event.clientX, event.clientY);
+  const x = pos.x;
+  const y = pos.y;
+
+  penTool.draw({ x: lastX, y: lastY }, { x, y });
+
+  lastX = x;
+  lastY = y;
+});
 
 canvas.addEventListener("touchend", () => {
   isDrawing = false;
