@@ -8,6 +8,7 @@ export class PenTool {
   }
 
   setup() {
+    this.ctx.globalCompositeOperation = "source-over";  // 通常の描画モードに戻す
     this.ctx.lineWidth = 2;
     this.ctx.lineCap = "round";
     this.ctx.lineJoin = "round";

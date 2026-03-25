@@ -12,6 +12,8 @@ const penTool = new PenTool(ctx);
 const eraseTool = new EraseTool(ctx);
 
 let currentTool = penTool;
+// 最初はペンの設定を適用
+penTool.setup();
 
 let isDrawing = false;
 //前の場所を保存する変数
@@ -73,12 +75,14 @@ const eraseBtn = document.querySelector(".erase-button");
 
 penBtn.addEventListener("click", () => {
   currentTool = penTool;
+  penTool.setup();  // ← ペンの設定を適用
   penBtn.classList.add("active");
   eraseBtn.classList.remove("active");
 });
 
 eraseBtn.addEventListener("click", () => {
   currentTool = eraseTool;
+  eraseTool.setup();  // ← 消しゴムの設定を適用
   eraseBtn.classList.add("active");
   penBtn.classList.remove("active");
 });
