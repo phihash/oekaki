@@ -18,19 +18,19 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
-// PC
-canvas.addEventListener("mousedown", (event) => {
+// 描画開始処理
+function handleStart(clientX, clientY) {
   isDrawing = true;
-
-  const pos = canvasManager.getCanvasPosition(event.clientX, event.clientY);
+  const pos = canvasManager.getCanvasPosition(clientX, clientY);
   lastX = pos.x;
   lastY = pos.y;
-});
+}
 
-canvas.addEventListener("mousemove", (event) => {
+// 描画中の処理
+function handleMove(clientX, clientY) {
   if (!isDrawing) return;
 
-  const pos = canvasManager.getCanvasPosition(event.clientX, event.clientY);
+  const pos = canvasManager.getCanvasPosition(clientX, clientY);
   const x = pos.x;
   const y = pos.y;
 
@@ -38,29 +38,47 @@ canvas.addEventListener("mousemove", (event) => {
 
   lastX = x;
   lastY = y;
-});
+}
 
-canvas.addEventListener("mouseup", () => {
+// 描画終了処理
+function handleEnd() {
   isDrawing = false;
+}
+
+// マウスイベント（PC）
+canvas.addEventListener("mousedown", (e) => handleStart(e.clientX, e.clientY));
+canvas.addEventListener("mousemove", (e) => handleMove(e.clientX, e.clientY));
+canvas.addEventListener("mouseup", handleEnd);
+
+// タッチイベント（スマホ・タブレット）
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  handleStart(touch.clientX, touch.clientY);
 });
 
-canvas.addEventListener("touchstart", () => {
-  isDrawing = true;
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  handleMove(touch.clientX, touch.clientY);
 });
 
-canvas.addEventListener("touchmove", (event) => {
-  if (!isDrawing) return;
-
-  const pos = canvasManager.getCanvasPosition(event.clientX, event.clientY);
-  const x = pos.x;
-  const y = pos.y;
-
-  currentTool.draw({ x: lastX, y: lastY }, { x, y });
-
-  lastX = x;
-  lastY = y;
+canvas.addEventListener("touchend", (e) => {
+  e.preventDefault();
+  handleEnd();
 });
 
-canvas.addEventListener("touchend", () => {
-  isDrawing = false;
+const penBtn = document.querySelector(".pen-button");
+const eraseBtn = document.querySelector(".erase-button");
+
+penBtn.addEventListener("click", () => {
+  currentTool = penTool;
+  penBtn.classList.add("active");
+  eraseBtn.classList.remove("active");
+});
+
+eraseBtn.addEventListener("click", () => {
+  currentTool = eraseTool;
+  eraseBtn.classList.add("active");
+  penBtn.classList.remove("active");
 });
