@@ -1,11 +1,26 @@
-.main-position {
-  margin: 0 auto;
-}
-
 .text-center {
   text-align: center;
 }
 .canvas {
   display: block;
+  margin: 0 auto;
   border: 2px solid #000;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+.pen-button,
+.erase-button {
+  display: block;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 0.3rem;
+}
+
+.active {
+  background-color: blueviolet;
+  color: aliceblue;
 }

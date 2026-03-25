@@ -9,6 +9,9 @@ const canvas = canvasManager.getElement();
 const ctx = canvasManager.getContext();
 
 const penTool = new PenTool(ctx);
+const eraseTool = new EraseTool(ctx);
+
+let currentTool = penTool;
 
 let isDrawing = false;
 //前の場所を保存する変数
@@ -31,7 +34,7 @@ canvas.addEventListener("mousemove", (event) => {
   const x = pos.x;
   const y = pos.y;
 
-  penTool.draw({ x: lastX, y: lastY }, { x, y });
+  currentTool.draw({ x: lastX, y: lastY }, { x, y });
 
   lastX = x;
   lastY = y;
@@ -52,7 +55,7 @@ canvas.addEventListener("touchmove", (event) => {
   const x = pos.x;
   const y = pos.y;
 
-  penTool.draw({ x: lastX, y: lastY }, { x, y });
+  currentTool.draw({ x: lastX, y: lastY }, { x, y });
 
   lastX = x;
   lastY = y;
