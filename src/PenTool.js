@@ -1,9 +1,11 @@
+import { Tool } from './Tool.js';
+
 /**
  * ペンツールクラス
  */
-export class PenTool {
+export class PenTool extends Tool {
   constructor(ctx) {
-    this.ctx = ctx;
+    super(ctx);
     this.setup();
   }
 

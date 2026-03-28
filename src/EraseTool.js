@@ -1,6 +1,8 @@
-export class EraseTool {
+import { Tool } from './Tool.js';
+
+export class EraseTool extends Tool {
   constructor(ctx) {
-    this.ctx = ctx;
+    super(ctx);
     this.setup();
   }
 
